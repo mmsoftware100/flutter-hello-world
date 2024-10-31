@@ -45,7 +45,6 @@ class DictionaryProvider extends ChangeNotifier{
           )
         ]
     ),
-    
      */
   ];
 
