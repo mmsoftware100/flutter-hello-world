@@ -37,6 +37,13 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
             }, child: Text("Search")),
 
+            // Status
+            // Text(Provider.of<DictionaryProvider>(context, listen: true).status),
+
+            if(Provider.of<DictionaryProvider>(context, listen: true).status == "loading") CircularProgressIndicator(),
+
+            if(Provider.of<DictionaryProvider>(context, listen: true).status == "error") Text(Provider.of<DictionaryProvider>(context,listen: true).errorMessage, style: TextStyle(color: Colors.red),),
+
             // Result , list of Dictionary
             ...Provider.of<DictionaryProvider>(context, listen: true).dictionaryList.map((dictionary) => _dictionaryWidget(dictionary)).toList(),
 

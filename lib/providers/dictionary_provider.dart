@@ -5,6 +5,10 @@ import 'package:state/data/dictionary.dart';
 import 'package:state/data/meaning.dart';
 
 class DictionaryProvider extends ChangeNotifier{
+  String status = "idle"; // idle | loading | data | error
+  String errorMessage = "";
+
+
   List<Dictionary> dictionaryList = [
     /*
     Dictionary(
@@ -50,6 +54,10 @@ class DictionaryProvider extends ChangeNotifier{
 
   Future<bool> getMeaning(String word) async{
     dictionaryList.clear();
+    status = "loading";
+    errorMessage = "";
+    notifyListeners();
+
 
     Dio client = Dio();
     String endPoint="https://api.dictionaryapi.dev/api/v2/entries/en/$word";
@@ -61,12 +69,18 @@ class DictionaryProvider extends ChangeNotifier{
         dictionaryList.add(newDict);
       }
       notifyListeners();
+      status = "data";
       return true;
     }
     catch (exp, stackTrace){
       print("DictionaryProvider->API exception");
       print(exp);
       print(stackTrace);
+      status = "error";
+
+      // errorMessage = "တစ်ခုခု မှားနေပါသည်";
+      errorMessage = exp.toString();
+      notifyListeners();
       return false;
     }
   }
