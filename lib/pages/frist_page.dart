@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state/data/person.dart';
+import 'package:state/pages/dictionary/dictionary_page.dart';
 import 'package:state/pages/drink/drink_home_page.dart';
 import 'package:state/pages/second_page.dart';
 
@@ -79,7 +80,8 @@ class _FirstPageState extends State<FirstPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.pushNamed(context, DrinkHomePage.routeName);
+          // Navigator.pushNamed(context, DrinkHomePage.routeName);
+          Navigator.pushNamed(context, DictionaryPage.routeName);
         },
         child: Icon(Icons.place),
       ),
