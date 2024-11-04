@@ -55,7 +55,7 @@ class UserProvider extends ChangeNotifier{
       status = "error";
       errorMessage = response.statusMessage.toString();
       notifyListeners();
-      
+
       return false;
     }
   }
